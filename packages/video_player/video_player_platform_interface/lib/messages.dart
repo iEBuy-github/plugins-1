@@ -123,6 +123,28 @@ class PositionMessage {
   }
 }
 
+class AudioMessage {
+  int? textureId;
+  List? audios;
+  int? index;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['textureId'] = textureId;
+    pigeonMap['audios'] = audios;
+    pigeonMap['index'] = index;
+    return pigeonMap;
+  }
+
+  static AudioMessage decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return AudioMessage()
+      ..textureId = pigeonMap['textureId'] as int?
+      ..audios = pigeonMap['audios'] as List?
+      ..index = pigeonMap['index'] as int?;
+  }
+}
+
 class MixWithOthersMessage {
   bool? mixWithOthers;
 
@@ -364,6 +386,84 @@ class VideoPlayerApi {
       // noop
     }
   }
+
+  Future<void> setAudio(AudioMessage arg) async {
+    final Object encoded = arg.encode();
+    const BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.VideoPlayerApi.setAudio', StandardMessageCodec());
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(encoded) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+        details: null,
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error =
+          replyMap['error'] as Map<Object?, Object?>;
+      throw PlatformException(
+        code: error['code'] as String,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      // noop
+    }
+    
+  }
+
+  Future<void> setAudioByIndex(AudioMessage arg) async {
+    final Object encoded = arg.encode();
+    const BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.VideoPlayerApi.setAudioByIndex', StandardMessageCodec());
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(encoded) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+        details: null,
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error =
+          replyMap['error'] as Map<Object?, Object?>;
+      throw PlatformException(
+        code: error['code'] as String,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      // noop
+    }
+    
+  }
+
+   Future<AudioMessage> getAudios(TextureMessage arg) async {
+      final Object encoded = arg.encode();
+      const BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.VideoPlayerApi.getAudios', StandardMessageCodec());
+      final Map<Object?, Object?>? replyMap =
+          await channel.send(encoded) as Map<Object?, Object?>?;
+      if (replyMap == null) {
+        throw PlatformException(
+          code: 'channel-error',
+          message: 'Unable to establish connection on channel.',
+          details: null,
+        );
+      } else if (replyMap['error'] != null) {
+        final Map<Object?, Object?> error =
+            replyMap['error'] as Map<Object?, Object?>;
+        throw PlatformException(
+          code: error['code'] as String,
+          message: error['message'] as String?,
+          details: error['details'],
+        );
+      } else {
+        return AudioMessage.decode(replyMap['result']!);
+      }
+      
+    }
 
   Future<void> pause(TextureMessage arg) async {
     final Object encoded = arg.encode();

@@ -85,6 +85,24 @@ abstract class VideoPlayerPlatform {
     throw UnimplementedError('play() has not been implemented.');
   }
 
+    /// Get audios from video
+  Future<List> getAudios(int textureId)
+  {
+    throw UnimplementedError('getAudios() has not been implemented');
+
+  }
+  /// Set audio by audio name
+  Future<void> setAudio(int textureId,List audio)
+  {
+    throw UnimplementedError('setAudio() has not been implemented');
+
+  }
+  /// Set audio by index
+  Future<void> setAudioByIndex(int textureId, int index) {
+    throw UnimplementedError("setAudioByIndex() has not been implemented");
+
+  }
+
   /// Stops the video playback.
   Future<void> pause(int textureId) {
     throw UnimplementedError('pause() has not been implemented.');
