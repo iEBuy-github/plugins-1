@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class FLTVolumeMessage;
 @class FLTPlaybackSpeedMessage;
 @class FLTPositionMessage;
+@class FLTAudioMessage;
 @class FLTMixWithOthersMessage;
 
 @interface FLTTextureMessage : NSObject
@@ -46,6 +47,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nullable) NSNumber *position;
 @end
 
+@interface FLTAudioMessage : NSObject
+@property(nonatomic, strong, nullable) NSNumber * textureId;
+@property(nonatomic, strong, nullable) NSArray * audios;
+@property(nonatomic, strong, nullable) NSNumber * index;
+@end
+
 @interface FLTMixWithOthersMessage : NSObject
 @property(nonatomic, strong, nullable) NSNumber *mixWithOthers;
 @end
@@ -63,6 +70,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable FLTPositionMessage *)position:(FLTTextureMessage *)input
                                     error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)seekTo:(FLTPositionMessage *)input error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setAudio:(FLTAudioMessage*)input error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setAudioByIndex:(FLTAudioMessage*)input error:(FlutterError *_Nullable *_Nonnull)error;
+- (nullable FLTAudioMessage *)getAudios:(FLTTextureMessage*)input error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)pause:(FLTTextureMessage *)input error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setMixWithOthers:(FLTMixWithOthersMessage *)input
                    error:(FlutterError *_Nullable *_Nonnull)error;
