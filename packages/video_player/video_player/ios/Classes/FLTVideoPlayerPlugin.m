@@ -105,7 +105,7 @@ static void* playbackBufferFullContext = &playbackBufferFullContext;
   }
 }
 
-const int64_t TIME_UNSET = -9223372036854775807;
+const int64_t TIME_UNSET = -9223372036854775;
 
 static inline int64_t FLTCMTimeToMillis(CMTime time) {
   // When CMTIME_IS_INDEFINITE return a value that matches TIME_UNSET from ExoPlayer2 on Android.
