@@ -21,7 +21,7 @@ dependencies:
   video_player_platform_interface:
     # path: ../video_player_platform_interface
     git:
-      url: https://github.com/gumilar1995/plugins-1
+      url: https://github.com/iEBuy-github/plugins-1
       ref: agumi
       path: packages/video_player/video_player_platform_interface
   # The design on https://flutter.dev/go/federated-plugins was to leave
@@ -33,7 +33,7 @@ dependencies:
   video_player_web:
     # path: ../video_player_web
     git:
-      url: https://github.com/gumilar1995/plugins-1
+      url: https://github.com/iEBuy-github/plugins-1
       ref: agumi
       path: packages/video_player/video_player_web
   # video_player_web: ^2.0.0

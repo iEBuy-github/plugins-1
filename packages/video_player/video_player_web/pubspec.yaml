@@ -20,7 +20,7 @@ dependencies:
   video_player_platform_interface:
     # path: ../video_player_platform_interface
     git:
-      url: https://github.com/gumilar1995/plugins-1
+      url: https://github.com/iEBuy-github/plugins-1
       ref: agumi
       path: packages/video_player/video_player_platform_interface
 
